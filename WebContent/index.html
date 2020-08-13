@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastro App</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script>
+        function callJqueryAjax()
+        {
+        	var cod = $('#cod').val();
+        	var descricao = $('#descricao').val();
+        	var valor = $('#valor').val();
+        	$.ajax({
+        	url     : 'ProdutoServlet',
+        	method     : 'POST',
+        	data     : {
+        		cod : cod,
+        		descricao : descricao,
+        		valor : valor
+        		},
+        	success: function(resultText){
+        	$('#result').html(resultText);},
+        	error : function(jqXHR, exception){
+        	console.log('Error occured!!');}});
+        }
+        </script>
+</head>
+<body>
+<h2>Cadastro de Produto</h2>
+Dígite o código:
+<input type="number" min="1" step="any" id="cod"/><br/>
+Dígite a descrição:
+<input type="text" id="descricao"/><br/>
+Dígite o valor:
+<input type="number" min="1" step="any" id="valor"/><br/>
+<button onclick="callJqueryAjax()">Salvar</button>
+<br/><br/>
+<h3 id="result"></h3>
+</body>
+</html>
